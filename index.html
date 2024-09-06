@@ -14,22 +14,21 @@
 
         /* Header Styling */
         .header {
-            width: 1850px;
-            padding: 40px 20px;
-            margin: 0 auto;
-            height: 600px; /* Adjust height as needed */
+            position: relative;
+            height: 50vh; /* Responsive height */
             overflow: hidden;
             z-index: 1; /* Ensures it stays on top */
             background: #003366; /* Fallback color if image fails to load */
             display: flex;
             justify-content: center; /* Center the images horizontally */
             align-items: center; /* Center the images vertically */
+            flex-wrap: wrap; /* Allow images to wrap on smaller screens */
         }
 
         .header img {
             object-fit: cover; /* Cover the header without stretching */
             height: 100%; /* Maintain the full height of the header */
-            width: 600px; /* Ensure both images take up equal width */
+            width: 50%; /* Ensure both images take up equal width */
             max-width: 600px; /* Optional: Cap the max width for smaller screens */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
             border-radius: 10px; /* Optional: Adds rounded corners */
@@ -48,24 +47,26 @@
             transform: translate(-50%, -50%); /* Center text */
             text-align: center;
             color: #fff;
+            width: 90%; /* Ensure text wraps on small screens */
         }
 
         .hero-text h1 {
             margin: 0;
-            font-size: 3.5rem; /* Adjust as needed */
+            font-size: 2.5rem; /* Adjust as needed */
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* For readability */
         }
 
         .hero-text p {
             margin-top: 10px;
-            font-size: 1.5rem; /* Adjust as needed */
+            font-size: 1.2rem; /* Adjust as needed */
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* For readability */
         }
 
         /* Main Content */
         #Main {
-            width: 1000px;
+            width: 90%;
+            max-width: 1000px;
             padding: 40px 20px;
             margin: 0 auto;
             background-color: #fff;
@@ -80,9 +81,10 @@
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
             border-bottom: 5px solid #004080;
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: bold;
             border-radius: 10px;
+            margin-bottom: 20px;
         }
 
         #Title {
@@ -90,7 +92,7 @@
             flex-direction: column; /* Stack the title and subtitle */
             justify-content: center;
             align-items: center;
-            height: 20vh;
+            height: auto;
             padding: 20px;
             color: #007bff;
             font-size: larger;
@@ -128,7 +130,8 @@
 
         .side-by-side-container {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column; /* Stack items on small screens */
+            justify-content: center;
             align-items: center;
             margin-top: 20px;
             gap: 20px; 
@@ -137,6 +140,7 @@
         .image-text-container {
             display: flex;
             align-items: center;
+            flex-direction: column; /* Stack image and text on small screens */
         }
 
         .image-text-container img {
@@ -144,7 +148,7 @@
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
-            margin-right: 20px; /* Space between image and text */
+            margin-bottom: 20px; /* Space between image and text */
             border: 3px solid #007bff; /* Blue border around the image */
             transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
         }
@@ -157,19 +161,18 @@
         .text-flex {
             font-size: 1.2rem;
             color: #333;
-            text-align: left;
+            text-align: center;
         }
 
         iframe {
-            flex-grow: 1;
+            width: 100%;
             max-width: 600px; /* Adjust the map width */
             height: 250px;
             border: 0;
+            margin-top: 20px;
         }
 
         footer {
-            width: 1850px;
-            margin: 0 auto;
             background-color: #f4f4f4; /* Light background for contrast */
             color: #333; /* Dark text color for readability */
             padding: 40px 0; /* Space around the content */
@@ -189,6 +192,7 @@
             flex: 1; /* Each section takes up equal space */
             padding: 10px;
             min-width: 250px; /* Ensure sections don't shrink too small */
+            text-align: left;
         }
 
         .footer-section h3 {
@@ -222,6 +226,7 @@
             display: flex;
             justify-content: center;
             gap: 15px; /* Space between social icons */
+            margin-top: 20px;
         }
 
         .social-links a img {
@@ -229,63 +234,100 @@
             height: 30px;
             object-fit: cover;
             border-radius: 50%; /* Round icons */
-            filter: grayscale(0%); /* Desaturate for consistency */
+            filter: grayscale(100%); /* Desaturate for consistency */
             transition: filter 0.3s ease; /* Smooth transition on hover */
         }
 
+
         .social-links a img:hover {
-            filter: grayscale(100%); /* Colorize icons on hover */
+            filter: grayscale(0%); /* Colorize icons on hover */
         }
 
         .footer-bottom {
-            background-color: #222; /* Dark background for footer bottom */
-            padding: 20px 0;
-            font-size: 13px; /* Smaller text for copyright notice */
-            color: #f4f4f4;
+        background-color: #222; /* Dark background for footer bottom */
+        padding: 20px 0;
+        font-size: 13px; /* Smaller text for copyright notice */
+        color: #f4f4f4;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        padding-top: 60px;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        font-size: 1rem;
+        font-weight: bold;
+        margin: 5% auto; /* Centered */
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%; /* Responsive width */
+        max-width: 500px; /* Optional: Cap max width */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .header img {
+            width: 100%;
+            max-width: none;
         }
 
-        /* The Modal (background) */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-            padding-top: 60px;
+        .hero-text h1 {
+            font-size: 2rem;
         }
 
-        /* Modal Content/Box */
-        .modal-content {
-            background-color: #fefefe;
+        .hero-text p {
             font-size: 1rem;
-            font-weight: bold;
-            margin: 5% auto; /* Centered */
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%; /* Responsive width */
-            max-width: 500px; /* Optional: Cap max width */
-            border-radius: 10px; /* Rounded corners */
         }
 
-        /* The Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        #P1, #P3, #P2, #P4 {
+            font-size: 1rem;
+            padding: 10px;
         }
 
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+        .side-by-side-container {
+            flex-direction: column;
         }
-    </style>
+
+        .image-text-container img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+
+        .footer-content {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+</style>
 </head>
 <body>
     <div class="header">
@@ -367,34 +409,5 @@
             &copy; 2024 SASPT Cardiac Rehab. All rights reserved.
         </div>
     </footer>
-
-    <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the link that opens the modal
-        var link = document.getElementById("myLink");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the link, open the modal 
-        link.onclick = function(event) {
-            event.preventDefault(); // Prevent the default action of the link
-            modal.style.display = "block";
-        }
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    </script>
 </body>
 </html>
